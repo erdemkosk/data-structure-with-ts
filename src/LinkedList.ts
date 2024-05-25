@@ -8,6 +8,7 @@
 export interface ILinkedList {
   push(value : number) : void;
   pop () : void;
+  shift() : void;
   unshift(value:number) : void;
   insert(index: number, value : number) : void
 }
@@ -73,6 +74,18 @@ export class LinkedList implements ILinkedList {
 
     current.next = undefined;
     this.tail = current;
+    this.lenght -= 1;
+  }
+
+  shift(): void { // O(1)
+    let current = this.head;
+
+    if (current === undefined) {
+      return;
+    }
+
+    this.head = this.head.next;
+    current = undefined;
     this.lenght -= 1;
   }
 
