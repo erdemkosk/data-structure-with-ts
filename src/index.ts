@@ -16,4 +16,11 @@ linkedList.pop();
 linkedList.pop();
 
 console.log(JSON.stringify(linkedList));
-// {"head":{"value":0,"next":{"value":1,"next":{"value":2}}},"tail":{"value":2},"lenght":3}
+// {"head":{"value":0},"tail":{"value":0},"lenght":1}
+
+linkedList.pop();
+linkedList.unshift(-1);
+linkedList.unshift(-2);
+
+console.log(JSON.stringify(linkedList));
+// {"head":{"value":-2,"next":{"value":-1}},"tail":{"value":-1},"lenght":2}

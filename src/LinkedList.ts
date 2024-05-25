@@ -76,8 +76,17 @@ export class LinkedList implements ILinkedList {
     this.lenght -= 1;
   }
 
-  unshift(value: number) : void {
-    throw new Error('Method not implemented.');
+  unshift(value: number) : void { // O(1)
+    const newNode = new Node(value, this.head);
+
+    if (this.head) {
+      this.head = newNode;
+      this.lenght += 1;
+    } else {
+      this.head = newNode;
+      this.tail = newNode;
+      this.lenght = 1;
+    }
   }
 
   insert(index: number, value: number) : void {
