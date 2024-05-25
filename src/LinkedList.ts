@@ -13,6 +13,7 @@ export interface ILinkedList {
   unshift(value:number) : void;
   insert(index: number, value : number) : void
   get(index: number): number
+  set(index: number, value: number): void
 }
 
 export class Node {
@@ -49,6 +50,20 @@ export class LinkedList implements ILinkedList {
       temp = temp.next;
     }
     return temp.value;
+  }
+
+  set(index: number, value: number): void { // O(n)
+    if (index < 0 || index > this.length) return;
+
+    let current = this.head;
+
+    for (let i = 0; i < this.length; i++) {
+      if (i === index) {
+        current.value = value;
+        break;
+      }
+      current = current.next;
+    }
   }
 
   push(value: number) : void { // O(1)

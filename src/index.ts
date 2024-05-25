@@ -35,3 +35,7 @@ console.log(JSON.stringify(linkedList));
 console.log(linkedList.get(2));
 // {"head":{"value":-1,"next":{"value":1,"next":{"value":2,"next":{"value":3,"next":{"value":4}}}}},"tail":{"value":4},"length":5}
 // 2
+
+linkedList.set(0, 0);
+console.log(JSON.stringify(linkedList));
+// {"head":{"value":0,"next":{"value":1,"next":{"value":2,"next":{"value":3,"next":{"value":4}}}}},"tail":{"value":4},"length":5}
