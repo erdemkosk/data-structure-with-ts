@@ -21,6 +21,11 @@ export class Node {
 
   next: Node;
 
+  /**
+   * Node constructor.
+   * @param {number} value - The value to store in the node.
+   * @param {Node} [next] - A reference to the next node in the list.
+   */
   constructor(value: number, next?:Node) {
     this.value = value;
     this.next = next;
@@ -34,6 +39,11 @@ export class LinkedList implements ILinkedList {
 
   length : number;
 
+
+  /**
+   * Creates a linked list with an initial value.
+   * @param {number} value - Initial value to insert into the list.
+   */
   constructor(value: number) {
     const newNode = new Node(value);
     // When initial operation will be head and tail the same value
@@ -42,7 +52,12 @@ export class LinkedList implements ILinkedList {
     this.length = 1;
   }
 
-  get(index: number): number { // O(n)
+  /**
+   * Retrieves a value at a specific index in the list.
+   * @param {number} index - The index of the value to retrieve.
+   * @returns {number | undefined} The value at the specified index, or undefined if out of bounds.
+   */
+  get(index: number): number | undefined { // O(n)
     if (index < 0 || index >= this.length) return undefined;
     let temp = this.head;
 
@@ -52,6 +67,11 @@ export class LinkedList implements ILinkedList {
     return temp.value;
   }
 
+  /**
+   * Sets a value at a specific index in the list.
+   * @param {number} index - The index at which to set the value.
+   * @param {number} value - The new value to set.
+   */
   set(index: number, value: number): void { // O(n)
     if (index < 0 || index > this.length) return;
 
@@ -66,6 +86,10 @@ export class LinkedList implements ILinkedList {
     }
   }
 
+  /**
+   * Adds a value to the end of the list.
+   * @param {number} value - The value to add.
+   */
   push(value: number) : void { // O(1)
     const newNode = new Node(value);
 
@@ -80,6 +104,10 @@ export class LinkedList implements ILinkedList {
     this.length += 1;
   }
 
+
+  /**
+   * Removes the last element from the list.
+   */
   pop() : void { // O(n)
     if (!this.head) { // if this is empty list
       return;
@@ -104,6 +132,9 @@ export class LinkedList implements ILinkedList {
     this.length -= 1;
   }
 
+  /**
+   * Removes the first element from the list.
+   */
   shift(): void { // O(1)
     let current = this.head;
 
@@ -116,6 +147,10 @@ export class LinkedList implements ILinkedList {
     this.length -= 1;
   }
 
+  /**
+   * Adds a new value at the beginning of the list.
+   * @param {number} value - The value to insert at the start.
+   */
   unshift(value: number) : void { // O(1)
     const newNode = new Node(value, this.head);
 
@@ -129,7 +164,29 @@ export class LinkedList implements ILinkedList {
     }
   }
 
+  /**
+   * Inserts a value at a specified index in the list.
+   * @param {number} index - The index at which to insert the new value.
+   * @param {number} value - The value to insert.
+   */
   insert(index: number, value: number) : void {
-    throw new Error('Method not implemented.');
+    if (index < 0 || index > this.length) return;
+
+    let current = this.head;
+    let before = this.head;
+
+    for (let i = 0; i < this.length; i++) {
+      if (i === index) {
+        // current.value = value;
+        const newNode = new Node(value, current);
+        before.next = newNode;
+        this.length += 1;
+
+        break;
+      }
+
+      before = current;
+      current = current.next;
+    }
   }
 }
