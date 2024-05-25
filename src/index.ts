@@ -43,3 +43,6 @@ console.log(JSON.stringify(linkedList));
 linkedList.insert(1, 4);
 console.log(JSON.stringify(linkedList));
 // {"head":{"value":0,"next":{"value":4,"next":{"value":1,"next":{"value":2,"next":{"value":3,"next":{"value":4}}}}}},"tail":{"value":4},"length":6}
+
+linkedList.remove(1);
+console.log(JSON.stringify(linkedList));

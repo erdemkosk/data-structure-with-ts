@@ -14,6 +14,7 @@ export interface ILinkedList {
   insert(index: number, value : number) : void
   get(index: number): number
   set(index: number, value: number): void
+  remove (index: number) : void
 }
 
 export class Node {
@@ -185,6 +186,26 @@ export class LinkedList implements ILinkedList {
         break;
       }
 
+      before = current;
+      current = current.next;
+    }
+  }
+
+  /**
+   * Remove a value at a specified index in the list.
+   * @param {number} index - The index at which to remove.
+   */
+  remove(index: number): void { // O(n)
+    if (index < 0 || index > this.length) return;
+
+    let current = this.head;
+    let before = this.head;
+
+    for (let i = 0; i < this.length; i++) {
+      if (i === index) {
+        before.next = current.next;
+        this.length -= 1;
+      }
       before = current;
       current = current.next;
     }
