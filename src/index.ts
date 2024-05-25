@@ -46,3 +46,8 @@ console.log(JSON.stringify(linkedList));
 
 linkedList.remove(1);
 console.log(JSON.stringify(linkedList));
+// {"head":{"value":0,"next":{"value":1,"next":{"value":2,"next":{"value":3,"next":{"value":4}}}}},"tail":{"value":4},"length":5}
+
+linkedList.reverse();
+console.log(JSON.stringify(linkedList));
+// {"head":{"value":4,"next":{"value":3,"next":{"value":2,"next":{"value":1,"next":{"value":0,"next":null}}}}},"tail":{"value":0,"next":null},"length":5}

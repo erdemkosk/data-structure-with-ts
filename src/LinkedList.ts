@@ -15,6 +15,7 @@ export interface ILinkedList {
   get(index: number): number
   set(index: number, value: number): void
   remove (index: number) : void
+  reverse () : void
 }
 
 export class Node {
@@ -51,6 +52,26 @@ export class LinkedList implements ILinkedList {
     this.head = newNode;
     this.tail = newNode;
     this.length = 1;
+  }
+
+  reverse(): void { // O(n)
+    let temp = this.head; // we will useing to get save initial state of whole ll
+
+    this.head = this.tail;
+    this.tail = temp;
+
+    // for now we will just reverse head and tail but we have to reverse pointers between nodes
+
+    let { next } = temp;
+    let prev = null;
+
+
+    for (let index = 0; index < this.length; index++) {
+      next = temp.next;
+      temp.next = prev;
+      prev = temp;
+      temp = next;
+    }
   }
 
   /**
