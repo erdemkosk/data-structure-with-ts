@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable @typescript-eslint/no-empty-function */
@@ -11,6 +12,7 @@ export interface ILinkedList {
   shift() : void;
   unshift(value:number) : void;
   insert(index: number, value : number) : void
+  get(index: number): number
 }
 
 export class Node {
@@ -29,14 +31,24 @@ export class LinkedList implements ILinkedList {
 
   tail : Node;
 
-  lenght : number;
+  length : number;
 
   constructor(value: number) {
     const newNode = new Node(value);
     // When initial operation will be head and tail the same value
     this.head = newNode;
     this.tail = newNode;
-    this.lenght = 1;
+    this.length = 1;
+  }
+
+  get(index: number): number { // O(n)
+    if (index < 0 || index >= this.length) return undefined;
+    let temp = this.head;
+
+    for (let i = 0; i < index; i++) {
+      temp = temp.next;
+    }
+    return temp.value;
   }
 
   push(value: number) : void { // O(1)
@@ -50,7 +62,7 @@ export class LinkedList implements ILinkedList {
       this.tail = newNode; // when we changed this we will update our tail item
     }
 
-    this.lenght += 1;
+    this.length += 1;
   }
 
   pop() : void { // O(n)
@@ -60,7 +72,7 @@ export class LinkedList implements ILinkedList {
     if (this.head === this.tail) { // if there is just one value remove everything
       this.head = undefined;
       this.tail = undefined;
-      this.lenght = undefined;
+      this.length = undefined;
       return;
     }
 
@@ -74,7 +86,7 @@ export class LinkedList implements ILinkedList {
 
     current.next = undefined;
     this.tail = current;
-    this.lenght -= 1;
+    this.length -= 1;
   }
 
   shift(): void { // O(1)
@@ -86,7 +98,7 @@ export class LinkedList implements ILinkedList {
 
     this.head = this.head.next;
     current = undefined;
-    this.lenght -= 1;
+    this.length -= 1;
   }
 
   unshift(value: number) : void { // O(1)
@@ -94,11 +106,11 @@ export class LinkedList implements ILinkedList {
 
     if (this.head) {
       this.head = newNode;
-      this.lenght += 1;
+      this.length += 1;
     } else {
       this.head = newNode;
       this.tail = newNode;
-      this.lenght = 1;
+      this.length = 1;
     }
   }
 

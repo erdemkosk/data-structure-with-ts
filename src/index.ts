@@ -25,3 +25,13 @@ console.log(JSON.stringify(linkedList));
 linkedList.shift();
 console.log(JSON.stringify(linkedList));
 // {"head":{"value":-1},"tail":{"value":-1},"lenght":1}
+
+linkedList.push(1);
+linkedList.push(2);
+linkedList.push(3);
+linkedList.push(4);
+
+console.log(JSON.stringify(linkedList));
+console.log(linkedList.get(2));
+// {"head":{"value":-1,"next":{"value":1,"next":{"value":2,"next":{"value":3,"next":{"value":4}}}}},"tail":{"value":4},"length":5}
+// 2
