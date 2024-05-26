@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable class-methods-use-this */
@@ -19,6 +20,7 @@ export interface ILinkedList {
   findMiddleNode() : Node
   clear(): void
   hasLoop(): boolean
+  findKthFromEnd(index: number): Node
 }
 
 export class Node {
@@ -55,6 +57,25 @@ export class LinkedList implements ILinkedList {
     this.head = newNode;
     this.tail = newNode;
     this.length = 1;
+  }
+
+  findKthFromEnd(index : number): Node {
+    let slowPointer = this.head; // we create two pointer as usual
+    let fastPointer = this.head;
+
+    for (let i = 0; i < index; i++) { // we shift to the our starting point with number
+      if (!fastPointer) {
+        return undefined;
+      }
+      fastPointer = fastPointer.next;
+    }
+
+    while (fastPointer) { // after that we will move one bu one to the end and slowone give us the result
+      slowPointer = slowPointer.next;
+      fastPointer = fastPointer.next;
+    }
+
+    return slowPointer;
   }
 
   hasLoop(): boolean { // O(n)

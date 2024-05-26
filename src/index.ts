@@ -69,3 +69,6 @@ console.log(linkedList.findMiddleNode().value);
 
 console.log(linkedList.hasLoop());
 // false
+
+console.log(linkedList.findKthFromEnd(2).value);
+// 8
