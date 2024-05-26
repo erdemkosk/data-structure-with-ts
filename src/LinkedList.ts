@@ -18,6 +18,7 @@ export interface ILinkedList {
   reverse () : void
   findMiddleNode() : Node
   clear(): void
+  hasLoop(): boolean
 }
 
 export class Node {
@@ -54,6 +55,22 @@ export class LinkedList implements ILinkedList {
     this.head = newNode;
     this.tail = newNode;
     this.length = 1;
+  }
+
+  hasLoop(): boolean { // O(n)
+    let slowPointer = this.head; // one step forward
+    let fastPointer = this.head; // two steps forward
+
+    while (fastPointer && fastPointer.next) {
+      slowPointer = slowPointer.next;
+      fastPointer = fastPointer.next.next;
+
+      if (slowPointer === fastPointer) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   clear(): void {

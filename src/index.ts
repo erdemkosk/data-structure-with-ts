@@ -65,3 +65,7 @@ linkedList.push(9);
 console.log(JSON.stringify(linkedList));
 // {"head":{"value":1,"next":{"value":2,"next":{"value":3,"next":{"value":4,"next":{"value":5,"next":{"value":6,"next":{"value":7,"next":{"value":8,"next":{"value":9}}}}}}}}},"tail":{"value":9},"length":9}
 console.log(linkedList.findMiddleNode().value);
+// 5
+
+console.log(linkedList.hasLoop());
+// false
