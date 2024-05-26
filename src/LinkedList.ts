@@ -16,6 +16,8 @@ export interface ILinkedList {
   set(index: number, value: number): void
   remove (index: number) : void
   reverse () : void
+  findMiddleNode() : Node
+  clear(): void
 }
 
 export class Node {
@@ -52,6 +54,24 @@ export class LinkedList implements ILinkedList {
     this.head = newNode;
     this.tail = newNode;
     this.length = 1;
+  }
+
+  clear(): void {
+    this.head = undefined;
+    this.tail = undefined;
+    this.length = 0;
+  }
+
+  findMiddleNode(): Node { // O(n) // this is important for slow and fast pointer tecnique
+    let slowPointer = this.head; // one step forward
+    let fastPointer = this.head; // two steps forward
+
+    while (fastPointer && fastPointer.next) {
+      slowPointer = slowPointer.next;
+      fastPointer = fastPointer.next.next;
+    }
+
+    return slowPointer;
   }
 
   reverse(): void { // O(n)
