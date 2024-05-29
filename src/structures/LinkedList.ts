@@ -23,7 +23,7 @@ export interface ILinkedList {
   findKthFromEnd(index: number): Node
 }
 
-export class Node {
+class Node {
   value : number;
 
   next: Node;
