@@ -38,6 +38,7 @@ export class Stack implements IStack {
     if (this.length === 1) {
       this.top = undefined;
       this.length = 0
+      return
     }
     const temp = this.top.next;
 
